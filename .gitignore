@@ -1,0 +1,58 @@
+# ── Data (raw downloads never committed) ──────────────────────
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*.csv
+!data/processed/.gitkeep
+
+# ── Database ──────────────────────────────────────────────────
+*.db
+
+# ── Trained models (artifacts, not source) ────────────────────
+models/*.pkl
+models/*.joblib
+!models/.gitkeep
+
+# ── MLflow ────────────────────────────────────────────────────
+mlruns/
+mlflow.db
+
+# ── Streamlit secrets (NEVER commit) ─────────────────────────
+.streamlit/secrets.toml
+
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# ── Virtual environments ─────────────────────────────────────
+venv/
+.venv/
+env/
+.env
+
+# ── IDE ───────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── OS ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Jupyter ───────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Coverage ──────────────────────────────────────────────────
+htmlcov/
+.coverage
+coverage.xml

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobFit AI | Portfolio</title>
+    <meta name="description" content="JobFit AI is an end-to-end Machine Learning recruitment matching system with SHAP explainability.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #06090f;
+            --text-color: #c9d1d9;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --glass-bg: rgba(22, 27, 34, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 15% 50%, rgba(88, 166, 255, 0.1), transparent 25%),
+                              radial-gradient(circle at 85% 30%, rgba(63, 185, 80, 0.05), transparent 25%);
+        }
+
+        /* Nav */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Hero */
+        header {
+            text-align: center;
+            padding: 8rem 2rem 5rem;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8b949e;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(88, 166, 255, 0.3);
+        }
+
+        /* Architecture */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            margin-bottom: 4rem;
+        }
+
+        /* Case Studies (Cards) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(22, 27, 34, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(88, 166, 255, 0.4);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .card p {
+            color: #8b949e;
+            font-size: 0.95rem;
+        }
+
+        /* Badges */
+        .badges {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--accent-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid var(--glass-border);
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">JobFit AI</div>
+        <div class="nav-links">
+            <a href="#architecture">Architecture</a>
+            <a href="#apps">Applications</a>
+            <a href="https://github.com" target="_blank">GitHub Repo</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Matching Talent with Precision.</h1>
+        <p class="subtitle">An end-to-end Machine Learning pipeline utilizing Scikit-Learn, SHAP Explainability, and Streamlit to revolutionize technical recruiting.</p>
+        <a href="#apps" class="cta-btn">Explore The Apps</a>
+    </header>
+
+    <div class="container" id="architecture">
+        <h2 class="section-title">System Architecture</h2>
+        <div class="glass-panel" style="text-align: center;">
+            <!-- Placeholder for actual Mermaid SVG or Image -->
+            <div style="padding: 40px; border: 1px dashed var(--glass-border); border-radius: 10px; color: #8b949e;">
+                <p style="font-size: 1.2rem; margin-bottom: 10px;">Pipeline Flow</p>
+                <p>Synthetic Data → FeatureUnion (TF-IDF + Skill Extractors) → RandomForestClassifier → SHAP TreeExplainer → Streamlit UI → SQLite Logging</p>
+            </div>
+            <div class="badges" style="justify-content: center; margin-top: 30px;">
+                <span class="badge">Python 3.10</span>
+                <span class="badge">Scikit-Learn</span>
+                <span class="badge">Pandas</span>
+                <span class="badge">MLflow</span>
+                <span class="badge">SHAP</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="apps">
+        <h2 class="section-title">The Product Suite</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <h3>App 1: Shortlist Predictor</h3>
+                <p>Built for the modern tech recruiter. Upload a candidate's PDF resume and a Job Description. Our ML pipeline scores the candidate from 0-100% and uses SHAP Waterfall charts to transparently show exactly which skills influenced the decision.</p>
+                <div class="badges">
+                    <span class="badge">Streamlit</span>
+                    <span class="badge">pdfplumber</span>
+                    <span class="badge">SQLite</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>App 2: Skill-Gap Coach</h3>
+                <p>Built for the candidate. Upload your resume and select a target role (e.g. Data Scientist). The recommender engine uses ablation testing to simulate adding missing skills to your resume, ranking the Top 5 skills you must learn to boost your hiring probability.</p>
+                <div class="badges">
+                    <span class="badge">Algorithm Design</span>
+                    <span class="badge">Predictive Delta</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>The Data Engine</h3>
+                <p>A highly modular data backbone. Features a custom Knowledge Graph that resolves unstructured text into normalized technical categories. Operates on a seamless synthetic data generator, primed for a drop-in replacement with Kaggle HR Analytics data in production.</p>
+                <div class="badges">
+                    <span class="badge">Data Engineering</span>
+                    <span class="badge">NLP</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>Built with ❤️ as part of a 90-Day ML Portfolio Challenge.</p>
+    </footer>
+
+</body>
+</html>
