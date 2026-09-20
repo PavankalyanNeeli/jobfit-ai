@@ -16,10 +16,11 @@ def get_explainer(pipeline, X_background):
     Returns:
         shap.TreeExplainer: The fitted explainer.
     """
-    # Transform background data using the feature extraction step
+    import numpy as np
     X_transformed = pipeline.named_steps['features'].transform(X_background)
     if hasattr(X_transformed, "toarray"):
         X_transformed = X_transformed.toarray()
+    X_transformed = np.array(X_transformed, dtype=np.float64)
     
     # Get the classifier step
     classifier = pipeline.named_steps['classifier']
@@ -39,10 +40,11 @@ def explain_prediction(explainer, pipeline, X_instance):
     Returns:
         shap.Explanation or numpy.ndarray: The SHAP values.
     """
-    # Transform the instance
+    import numpy as np
     X_transformed = pipeline.named_steps['features'].transform(X_instance)
     if hasattr(X_transformed, "toarray"):
         X_transformed = X_transformed.toarray()
+    X_transformed = np.array(X_transformed, dtype=np.float64)
     
     # Generate SHAP values
     shap_values = explainer(X_transformed)

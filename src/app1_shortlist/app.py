@@ -75,10 +75,8 @@ def load_model():
 
 @st.cache_resource
 def load_explainer(_pipeline):
-    # We need a background dataset for TreeExplainer
-    # In a real app we'd load a sample of the training data.
-    # For now, we create a small dummy background dataset.
-    dummy_background = ["Software Engineer Python SQL", "Data Scientist Machine Learning Python Pandas"]
+    # Added a comment to force Streamlit to clear cache and reload the module
+    dummy_background = ["A dummy resume with Python | Job requires Python"] * 10
     return get_explainer(_pipeline, dummy_background)
 
 pipeline = load_model()
