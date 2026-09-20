@@ -59,7 +59,7 @@ class SkillFeatureExtractor(BaseEstimator, TransformerMixin):
             
         return np.array(features)
         
-    def get_feature_names_out(self):
+    def get_feature_names_out(self, input_features=None):
         return np.array([
             "n_skills",
             "n_programming",
@@ -111,7 +111,7 @@ class SkillCoverageTransformer(BaseEstimator, TransformerMixin):
             
         return np.array(features)
         
-    def get_feature_names_out(self):
+    def get_feature_names_out(self, input_features=None):
         return np.array([
             "coverage_ratio",
             "n_matched",
@@ -151,7 +151,7 @@ class TextFeatureExtractor(BaseEstimator, TransformerMixin):
             
         return np.array(features)
         
-    def get_feature_names_out(self):
+    def get_feature_names_out(self, input_features=None):
         return np.array([
             "text_length",
             "word_count",
