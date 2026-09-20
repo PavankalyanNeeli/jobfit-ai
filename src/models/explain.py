@@ -18,6 +18,8 @@ def get_explainer(pipeline, X_background):
     """
     # Transform background data using the feature extraction step
     X_transformed = pipeline.named_steps['features'].transform(X_background)
+    if hasattr(X_transformed, "toarray"):
+        X_transformed = X_transformed.toarray()
     
     # Get the classifier step
     classifier = pipeline.named_steps['classifier']
@@ -39,6 +41,8 @@ def explain_prediction(explainer, pipeline, X_instance):
     """
     # Transform the instance
     X_transformed = pipeline.named_steps['features'].transform(X_instance)
+    if hasattr(X_transformed, "toarray"):
+        X_transformed = X_transformed.toarray()
     
     # Generate SHAP values
     shap_values = explainer(X_transformed)
