@@ -12,6 +12,7 @@ sys.path.append(str(project_root))
 
 from src.recommender.gap_analyzer import analyze_gaps
 from src.recommender.ranker import rank_recommendations
+from src.recommender.roadmap import generate_roadmap
 from src.features.skills import extract_skills
 from src import config
 
@@ -284,3 +285,32 @@ if analyze_btn:
             ))
             fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", font={'color': "#c9d1d9"})
             st.plotly_chart(fig, use_container_width=True)
+            
+            # --- Personalized Roadmap Builder ---
+            st.markdown("<hr><br>", unsafe_allow_html=True)
+            st.markdown("### 📅 Build Your Learning Roadmap")
+            st.markdown("Customize your study schedule based on your free time and budget. We will generate a step-by-step plan for the skills identified above.")
+            
+            r_col1, r_col2 = st.columns(2)
+            with r_col1:
+                hours_per_day = st.slider("Study Hours Per Day", min_value=1, max_value=8, value=2)
+            with r_col2:
+                budget = st.selectbox("Resource Budget", ["Free", "Paid"])
+                
+            if st.button("Generate Roadmap", type="secondary"):
+                skills_to_learn = [r['skill'] for r in top_recs]
+                roadmap = generate_roadmap(skills_to_learn, hours_per_day, budget)
+                
+                st.markdown("<br>#### Your Customized Schedule", unsafe_allow_html=True)
+                
+                for step in roadmap:
+                    st.markdown(f"""
+                    <div style="border-left: 3px solid #58a6ff; padding-left: 20px; margin-bottom: 25px;">
+                        <h4 style="margin-bottom: 5px; color: #58a6ff;">Day {step['start_day']} to {step['end_day']} : Master {step['skill'].upper()}</h4>
+                        <p style="color: #8b949e; margin-bottom: 5px;"><b>Total Time:</b> {step['total_hours']} hours ({hours_per_day} hrs/day)</p>
+                        <p style="color: #c9d1d9;"><b>Recommended Resource:</b> {step['resource']}</p>
+                    </div>
+                    """, unsafe_allow_html=True)
+                
+                total_days = roadmap[-1]['end_day']
+                st.success(f"🎓 If you stick to {hours_per_day} hours a day, you will be fully job-ready in exactly **{total_days} days**!")
